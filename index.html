@@ -2,37 +2,112 @@
 
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Raufun Ahsan</title>
-        <meta name="description" content="My personal portfolio website">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="style/index-style.css">
+        <meta name="description" content="My personal portfolio website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
+        <link rel="stylesheet" href="style/index-style.css" />
     </head>
     <body>
-        <header>
-            <nav>
-                <div class="nav-bar">
-                    <div class="nav-logo">
-                        <a href="index.html">Raufun Ahsan</a>
-                    </div>
-                    <div class="nav-links">
-                        <ul>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#projects">Projects</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
+        <div class="switch-style"></div>
+
+        <header class="header">
+            <nav class="nav container">
+                <a href="#" class="nav-logo"
+                    ><span class="first-letter">R</span>aufun</a
+                >
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#qualifications" class="nav-link"
+                            >Qalifications</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a href="#experience" class="nav-link">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- <div class="placeholder"></div> -->
+        <section class="home" id="home">
+            <div class="home-container container grid">
+                <div class="home-content">
+                    <span class="home-small">Hello</span>
+                    <h1 class="home-title"><span>I'm </span>Raufun Ahsan<br /><span class="typed">a developer</span><span class="cursor">|</span></h1>
+                    <p class="home-desc">
+                        I am programmer and a computer science student. I
+                        love to code and solve problems. I am passionate about
+                        learning new technologies and building new things.
+                    </p>
+                    <div class="home-btns">
+                        <a class="btn" href="" class="home-links">See my resume</a>
+                        <a class="btn btn-transparent" href="#contact" class="home-links">Contact me</a>
                     </div>
                 </div>
-            </nav>
-            <div class="hero">
-                <div class="hero-text">
-                    <h1>Raufun Ahsan</h1>
-                    <p>Web Developer</p>
+                <div class="home-img-container">
+                    <img class="home-img" src="img/832.png" alt="Raufun Ahsan" />
                 </div>
             </div>
-        </header>
-        
+        </section>
+        <section class="about section" id="about">
+            <div class="about-container container grid">
+                <div class="about-img-container">
+                    <img src="img/832.jpg" alt="Raufun" class="about-img">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title" data-title="Who am I?">
+                        I'm Raufun Ahsan, a computer science student and programming enthusiast.
+                    </h2>
+                    <p class="about-desc">
+                        I am a passionate programmer and a problem solver. I love to dabble in new technologies and gadgets. I am a fast learner and I am always eager to learn new things. I am a team player and I love to work in a team. I also like playing video games, watching movies and reading books.
+                    </p>
+                    <ul class="about-data grid">
+                        <li class="data-item">
+                            <h3 class="data-title">Name: </h3>
+                            <span class="data-desc">Raufun Ahsan</span>
+                        </li>
+                        <li class="data-item">
+                            <h3 class="data-title">From: </h3>
+                            <span class="data-desc">Dhaka, Bangladesh</span>
+                        </li>
+                        <li class="data-item">
+                            <h3 class="data-title">Age: </h3>
+                            <span class="data-desc"></span>
+                        </li>
+                        <li class="data-item">
+                            <h3 class="data-title">Email: </h3>
+                            <span class="data-desc">raufun.ahsan@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="qualifications" id="qualifications"></section>
+        <section class="experience" id="experience"></section>
+        <section class="skills" id="skills"></section>
+        <section class="projects" id="projects"></section>
+        <section class="contact" id="contact"></section>
+
         <script src="script/index-script.js" async defer></script>
     </body>
 </html>
