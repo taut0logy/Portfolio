@@ -1,3 +1,18 @@
+
+
+function align() {
+    let ele1 = document.querySelector(".resume-group:nth-child(1) .resume-item");
+    console.log(ele1);
+    let ele2 = document.querySelector(".resume-group:nth-child(2) .resume-item");
+    let mx = Math.max(ele1.offsetHeight, ele2.offsetHeight);
+    document.querySelectorAll(".resume-item").forEach((ele) => {
+        ele.style.height = mx + "px";
+    });
+}
+
+align();
+
+
 let typed = document.querySelector(".typed");
 let cursor= document.querySelector(".cursor");
 let strings = ["Web Developer", "Competitive Programmer", "Mobile Developer", "Machine Learning Enthusiast", "Open Source Contributor"];
