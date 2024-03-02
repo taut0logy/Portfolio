@@ -21,6 +21,10 @@
                 <a href="#" class="nav-logo"
                     ><span class="first-letter">R</span>aufun</a
                 >
+
+                <input type="checkbox" id="nav-toggler">
+                <label for="nav-toggler" class="nav-toggle"><i class="fa-solid fa-bars"></i></label>
+
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="#home" class="nav-link">Home</a>
@@ -46,6 +50,7 @@
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
                 </ul>
+                
             </nav>
         </header>
         <!-- <div class="placeholder"></div> -->
@@ -115,8 +120,8 @@
                             <span class="data-desc">Dhaka, Bangladesh</span>
                         </li>
                         <li class="data-item">
-                            <h3 class="data-title">Age:</h3>
-                            <span class="data-desc">21 years</span>
+                            <h3 class="data-title">Born:</h3>
+                            <span class="data-desc">2002</span>
                         </li>
                         <li class="data-item">
                             <h3 class="data-title">Email:</h3>
@@ -152,7 +157,7 @@
 
         <section class="qualifications section" id="qualifications">
             <h2
-                class="section-title title-center"
+                class="section-title title-center underline"
                 id="qualifications-title"
                 data-title="My journey"
             >
@@ -294,7 +299,7 @@
 
         <section class="expertise section" id="Expertise">
 
-            <h2 class="section-title title-center" data-title="Expertise">Things I'm good at</h2>
+            <h2 class="section-title title-center underline" data-title="Expertise">Things I'm good at</h2>
 
             <div class="expertise-container container grid">
 
@@ -341,7 +346,7 @@
         <!-- Skills -->
 
         <section class="skills section" id="skills">
-            <h2 class="section-title title-center" data-title="My talent">Professional Skills</h2>
+            <h2 class="section-title title-center underline" data-title="My talent">Professional Skills</h2>
             <div class="skills-container container grid">
 
                 <div class="skills-item">
@@ -360,7 +365,7 @@
                         <h3 class="skills-name">C++</h3>
                         <span class="skills-no">80%</span>
                     </div>
-                    <p class="skills-desc">I have been coding in C++ for 3 years. Besdes developing console applications, I have developed various games using C++ and honed my algorithmic skills in Competitive programming.</p>
+                    <p class="skills-desc">Besdes developing console applications, I have developed various games using C++ and honed my algorithmic skills in Competitive programming.</p>
                     <div class="skills-bar">
                         <div class="skills-percentage" style="width: 80%;"><span></span></div>
                     </div>
@@ -424,8 +429,144 @@
 
             </div>
         </section>
-        <section class="projects" id="projects"></section>
-        <section class="contact" id="contact"></section>
+        <section class="projects section" id="projects">
+            <h2 class="section-title title-center underline" data-title="My Portfolio">Recent Projects</h2>
+            <div class="project-container container grid">
+
+                <div class="project-card">
+                    <img src="img/console.jpeg" alt="" class="project-img">
+                    <div class="project-details">
+                        <h3 class="project-title">Financial Advisor</h3>
+                        <p class="prject-desc">A console application built with C++ that can manage daily transactions and write reports.</p>
+                        <a href="" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="img/desktop.jpeg" alt="" class="project-img">
+                    <div class="project-details">
+                        <h3 class="project-title">Finance Manager</h3>
+                        <p class="prject-desc">A desktop aplication built for financial analysis, reports and plans.</p>
+                        <a href="" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="img/wordle.jpeg" alt="" class="project-img">
+                    <div class="project-details">
+                        <h3 class="project-title">Goriber Wordle</h3>
+                        <p class="prject-desc">A wordle game built as a web application, with its own database of words.</p>
+                        <a href="" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="img/android.jpeg" alt="" class="project-img">
+                    <div class="project-details">
+                        <h3 class="project-title">My Application</h3>
+                        <p class="prject-desc">A basic android application with a log in system, a menu and a profile panel.</p>
+                        <a href="" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contact section" id="contact">
+            <h2 class="section-title title-center underline" data-title="Get in touch">Contact Me</h2>
+            <div class="contact-container container grid">
+                <div class="contact-details">
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="contact-item-details">
+                            <h3 class="contact-title">Phone</h3>
+                            <span class="contact-data">+880 1533 865 121</span><br>
+                            <span class="contact-data">+880 1840 261 323</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="contact-item-details">
+                            <h3 class="contact-title">Email</h3>
+                            <span class="contact-data"><a href="mailto:raufun.ahsan@gmail.com">raufun.ahsan@gmail.com</a></span><br>
+                            <span class="contact-data"><a href="mailto:ahsan20070030@stud.kuet.ac.bd">ahsan20070030@stud.kuet.ac.bd</a></span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="contact-item-details">
+                            <h3 class="contact-title">Address</h3>
+                            <span class="contact-data"><a href="https://maps.app.goo.gl/6njpZLjVyJD7whadA">762/B, Monipur, Mirpur, Dhaka-1216, Bangladesh</a></span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div class="contact-item-details">
+                            <h3 class="contact-title">Whatsapp</h3>
+                            <span class="contact-data"><a href="https://wa.me/8801533865121?text=Hi%20Raufun%21">+880 1533 865 121</a></span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-brands fa-discord"></i>
+                        <div class="contact-item-details">
+                            <h3 class="contact-title">Discord</h3>
+                            <span class="contact-data"><a href="https://discord.gg/wx56M2EX">raufun1801</a></span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-brands fa-telegram"></i>
+                        <div class="contact-item-details">
+                            <h3 class="contact-title">Telegram</h3>
+                            <span class="contact-data"><a href="https://t.me/ra_1801">@RA_1801</a></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <form action="contact.php" class="contact-form">
+                    <div class="form-heading">Send me a message</div>
+                    <div class="input-group">
+                    <div class="form-input"><input class="input-control" name="name" type="text" placeholder="Name"></div>
+                    <div class="form-input"><input class="input-control" name="email" type="text" placeholder="Email"></div></div>
+                    <div class="form-input"><input class="input-control" name="subject" type="text" placeholder="Subject"></div>
+                    <div class="form-input"><textarea class="input-control textarea" id="" name="Message" placeholder="Message" rows="30" cols="30"></textarea></div>
+                    <button class="btn btn-contact">Send Message</button>
+                </form>
+
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-container container">
+                <div class="footer-content">
+                    
+                    <div class="footer-bottom">
+                        <span class="footer-copy">© 2024 Raufun Ahsan. All rights reserved</span>
+                    </div>
+                </div>
+                
+
+                <div class="footer-links">
+                    <a href="" class="footer-link"
+                        ><i class="fa-brands fa-linkedin fa-xl"></i
+                    ></a>
+                    <a href="" class="footer-link"
+                        ><i class="fa-brands fa-github fa-xl"></i
+                    ></a>
+                    <a href="" class="footer-link"
+                        ><i class="fa-brands fa-facebook fa-xl"></i
+                    ></a>
+                    <a href="" class="footer-link"
+                        ><i class="fa-brands fa-instagram fa-xl"></i
+                    ></a>
+                </div>
+
+            </div>
+        </footer>
 
         <script src="script/index-script.js" async defer></script>
     </body>

@@ -1,4 +1,27 @@
+function isInViewport(element) {
+    let rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
 
+let skillItems = document.querySelectorAll(".skills-bar");
+
+const observer= new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target);
+        }
+    })
+}, { threshold: 1 });
+
+skillItems.forEach((item) => {
+    observer.observe(item);
+});
 
 function align() {
     let ele1 = document.querySelector(".resume-group:nth-child(1) .resume-item");
@@ -9,8 +32,10 @@ function align() {
         ele.style.height = mx + "px";
     });
 }
-
-align();
+if(screen.width>768) {
+    align();
+    console.log("aligned");
+}
 
 
 let typed = document.querySelector(".typed");
