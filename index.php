@@ -24,7 +24,7 @@
 
         <header class="header">
             <nav class="nav container">
-                <a href="#" class="nav-logo"
+                <a href="signin.php" class="nav-logo"
                     ><span class="first-letter">R</span>aufun</a
                 >
 
@@ -533,14 +533,15 @@
 
                 </div>
 
-                <form action="contact.php" class="contact-form">
+                <form action="contact.php" method="post" class="contact-form" >
                     <div class="form-heading">Send me a message</div>
                     <div class="input-group">
-                    <div class="form-input"><input class="input-control" name="name" type="text" placeholder="Name"></div>
-                    <div class="form-input"><input class="input-control" name="email" type="text" placeholder="Email"></div></div>
-                    <div class="form-input"><input class="input-control" name="subject" type="text" placeholder="Subject"></div>
-                    <div class="form-input"><textarea class="input-control textarea" id="" name="Message" placeholder="Message" rows="30" cols="30"></textarea></div>
-                    <button class="btn btn-contact">Send Message</button>
+                    <div class="form-input"><input class="input-control" name="name" type="text" placeholder="Name" required></div>
+                    <div class="form-input"><input class="input-control" name="email" type="email" placeholder="Email" required></div></div>
+                    <div class="form-input"><input class="input-control" name="subject" type="text" placeholder="Subject" required></div>
+                    <div class="form-input"><textarea class="input-control textarea" id="message" name="message" placeholder="Message (must be within 500 characters)" rows="30" cols="30" required></textarea></div>
+                    <input type="submit" name="submit" value="Send Message" class="btn btn-contact">
+                    
                 </form>
 
             </div>
