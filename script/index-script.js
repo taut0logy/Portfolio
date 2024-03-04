@@ -33,7 +33,8 @@ function align() {
     });
 }
 if(screen.width>768) {
-    align();
+    window.onload = align();
+    // align();
     console.log("aligned");
 }
 

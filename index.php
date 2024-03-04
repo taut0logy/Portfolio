@@ -175,6 +175,7 @@
                 Qualifications
             </h2>
             <div class="resume-container container grid">
+                
 
                 <!-- Education -->
 
@@ -186,12 +187,31 @@
                             $select = "SELECT * FROM education";
                             $result = mysqli_query($conn, $select);
                             if (mysqli_num_rows($result) > 0) {
+                                $items = array();
                                 while ($row = mysqli_fetch_assoc($result)) {
+                                    $items[] = $row;  
+                                }
+                                function comp($a,$b) {
+                                    $timeline1=explode(' - ',$a['timeline']);
+                                    $timeline2=explode(' - ',$b['timeline']);
+                                    $date1 = $timeline1[0];
+                                    $date2 = $timeline2[0];
+                                    if ($date1 == $date2) {
+                                        return 0;
+                                    } else {
+                                        return ($date1 < $date2) ? 1 : -1;
+                                    }
+                                }
+                                usort($items, 'comp');                         
+                                for ($i=0; $i < count($items); $i++)
+                                {
+                                    $row = $items[$i];                                   
                                     echo '<div class="resume-item">
                                     <div class="resume-header">
-                                        <h3 class="resume-subtitle">'.$row['institution'].'</h3>
-                                        <span class="resume-icon">+</span>
-                                    </div>
+                                        <h3 class="resume-subtitle">'.$row['institution'].'</h3>'.
+                                        (($i == 0 || $i==count($items)-1) ? '<span class="resume-icon">+</span>' : '<span class="resume-icon">-</span>').
+                                        // '<span class="resume-icon">+</span>
+                                    '</div>
                                     <div class="resume-content">
                                         <div class="resume-date-title">
                                             <h3 class="resume-title">'.$row['degree'].'</h3>
@@ -205,62 +225,6 @@
                                 }
                             }
                         ?>
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3 class="resume-subtitle">
-                                    Khulna University of Engineering and Technology, Khulna, Bangladesh
-                                </h3>
-                                <span class="resume-icon">+</span>
-                            </div>
-                            <div class="resume-content">
-                                <div class="resume-date-title">
-                                    <h3 class="resume-title">B.Sc in Computer Science and Engineering</h3>
-                                    <span class="resume-date">2022 - Present</span>
-                                </div>
-                                <p class="resume-desc">
-                                    I am currently studying computer science at
-                                    Khulna University of Engineering and
-                                    Technology. I am in my <b>3rd year</b> of study.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3 class="resume-subtitle">
-                                    Notre Dame College, Dhaka, Bangladesh
-                                </h3>
-                                <span class="resume-icon">-</span>
-                            </div>
-                            <div class="resume-content">
-                                <div class="resume-date-title">
-                                    <h3 class="resume-title">Higher Secndary School Certificate</h3>
-                                    <span class="resume-date">2018 - 2020</span>
-                                </div>
-                                <p class="resume-desc">
-                                    I completed my HSC from Notre Dame College, Dhaka. I got GPA 5.00 out of 5.00 in my HSC exam.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3 class="resume-subtitle">
-                                    Monipur High School, Dhaka, Bangladesh
-                                </h3>
-                                <span class="resume-icon">+</span>
-                            </div>
-                            <div class="resume-content">
-                                <div class="resume-date-title">
-                                    <h3 class="resume-title">Secondary School Certificate</h3>
-                                    <span class="resume-date">2019 - Present</span>
-                                </div>
-                                <p class="resume-desc">
-                                    I completed my SSC from Monipur High School, Dhaka. I got GPA 5.00 out of 5.00 in my SSC exam.
-                                </p>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 
@@ -270,16 +234,24 @@
                     
                     <div class="resume-item-list">
                     <h3 class="resume-heading">Extra Curricular Activities</h3>
+                    
                     <?php
                         $select = "SELECT * FROM extracurricular";
                         $result = mysqli_query($conn, $select);
                         if (mysqli_num_rows($result) > 0) {
+                            $items = array();
                             while ($row = mysqli_fetch_assoc($result)) {
+                                $items[] = $row;
+                            }                          
+                            usort($items, 'comp');
+                            for ($i=0; $i < count($items); $i++)
+                            {
+                                $row = $items[$i];
                                 echo '<div class="resume-item">
                                 <div class="resume-header">
-                                    <h3 class="resume-subtitle">'.$row['club'].'</h3>
-                                    <span class="resume-icon">+</span>
-                                </div>
+                                    <h3 class="resume-subtitle">'.$row['club'].'</h3>'.
+                                    (($i == 0 || $i==count($items)-1) ? '<span class="resume-icon">+</span>' : '<span class="resume-icon">-</span>').
+                                '</div>
                                 <div class="resume-content">
                                     <div class="resume-date-title">
                                         <h3 class="resume-title">'.$row['work'].'</h3>
@@ -293,61 +265,6 @@
                             }
                         }
                     ?>
-
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3 class="resume-subtitle">
-                                    SGIPC, KUET
-                                </h3>
-                                <span class="resume-icon">+</span>
-                            </div>
-                            <div class="resume-content">
-                                <div class="resume-date-title">
-                                    <h3 class="resume-title">Contest Manager</h3>
-                                    <span class="resume-date">2022 - Present</span>
-                                </div>
-                                <p class="resume-desc">
-                                    I have been working as a contest manager in SGIPC, KUET since 2024. I have been managing the contests and helping the contestants.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3 class="resume-subtitle">
-                                    HACK, KUET
-                                </h3>
-                                <span class="resume-icon">-</span>
-                            </div>
-                            <div class="resume-content">
-                                <div class="resume-date-title">
-                                    <h3 class="resume-title">General Member</h3>
-                                    <span class="resume-date">2022 - Present</span>
-                                </div>
-                                <p class="resume-desc">
-                                    I am a general member of HACK, KUET. I have been participating in various events and workshops organized by HACK, KUET and worked with hardware and software projects.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="resume-item">
-                            <div class="resume-header">
-                                <h3 class="resume-subtitle">
-                                    NDITC, Notre Dame College
-                                </h3>
-                                <span class="resume-icon">+</span>
-                            </div>
-                            <div class="resume-content">
-                                <div class="resume-date-title">
-                                    <h3 class="resume-title">General Member</h3>
-                                    <span class="resume-date">2018 - 2020</span>
-                                </div>
-                                <p class="resume-desc">
-                                    I was an active member of Notre Dame IT Club. I participated and volunteered in various events and workshops organized by NDITC.
-                                </p>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 

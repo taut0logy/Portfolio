@@ -39,6 +39,14 @@ if (isset($_POST['reset'])) {
             font-size: 1rem;
         }
 
+        .section {
+            padding-block: 7rem;
+        }
+
+        .table-container {
+            overflow-x: scroll;
+        }
+
         .message-container {
             display: flex;
             flex-direction: column;
@@ -111,10 +119,10 @@ if (isset($_POST['reset'])) {
             background-color: var(--container-color);
         }
 
-        .project-container {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* .project-container {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-        }
+        } */
 
         .edit-delete {
             display: flex;
@@ -134,7 +142,7 @@ if (isset($_POST['reset'])) {
         }
 
         table {
-            width: 100%;
+            max-width: 100%;
             border-collapse: collapse;
             
             /* color: var(--background-color); */
@@ -279,7 +287,7 @@ if (isset($_POST['reset'])) {
 
             <section class="section skills" id="skills">
                 <h2 class="section-title title-center underline" data-title="Manage">Skills</h2>
-                <div class="skills-container container grid">
+                <div class="skills-container container table-container">
 
                     <?php
                     $select = "SELECT * FROM skills";
@@ -316,7 +324,7 @@ if (isset($_POST['reset'])) {
 
             <section class="section education" id="education">
                 <h2 class="section-title title-center underline" data-title="Manage">Education</h2>
-                <div class="education-container container grid">
+                <div class="education-container container table-container">
                     
                         <?php
                         $select = "SELECT * FROM education";
@@ -353,7 +361,7 @@ if (isset($_POST['reset'])) {
 
             <section class="section activities" id="activities">
                 <h2 class="section-title title-center underline" data-title="Manage">Activities</h2>
-                <div class="activities-container container grid">
+                <div class="activities-container container table-container">
                     
                         <?php
                         $select = "SELECT * FROM extracurricular";
