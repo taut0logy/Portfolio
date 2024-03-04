@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     if (!empty($photo)) {
         //delete old photo
         $deleteFilePath="img/".$row['photo'];
-        unlink($deleteFilePath);
+        // unlink($deleteFilePath);
         $target = "img/" . basename($photo);
         if (move_uploaded_file($photo_tmp, $target)) {
         } else {
@@ -54,7 +54,7 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add Project</title>
+    <title>Edit Project</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style/index-style.css">
@@ -89,13 +89,13 @@ if (isset($_POST['submit'])) {
 
 <body>
     <section class="addproject section">
-        <h2 class="section-title title-center underline" data-title="Add a">New project</h2>
-        <form action="addProject.php" method="post" class="contact-form" enctype="multipart/form-data">
+        <h2 class="section-title title-center underline" data-title="Edit">Project</h2>
+        <form action="editProject.php" method="post" class="contact-form" enctype="multipart/form-data">
             <div class="form-input"><input class="input-control" name="name" type="text" placeholder="Title" value="<?php echo $name; ?>" required></div>
             <div class="form-input"><textarea class="input-control textarea" id="desc" name="desc" placeholder="Description (must be within 500 characters)" rows="30" cols="30" value="<?php echo $desc; ?>" required></textarea></div>
             <div class="form-input"><input class="input-control" name="link" type="text" placeholder="Link" value="<?php echo $link; ?>" required></div>
-            <div class="form-input"><input class="input-control" name="photo" type="file" placeholder="Project Image" required></div>
-            <input type="submit" name="submit" value="Add Project" class="btn btn-contact">
+            <div class="form-input"><input class="input-control" name="photo" type="file" placeholder="Project Image"></div>
+            <input type="submit" name="submit" value="Confirm Edit" class="btn btn-contact">
         </form>
     </section>
     <script src="" async defer></script>

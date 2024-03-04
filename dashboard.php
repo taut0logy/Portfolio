@@ -298,26 +298,7 @@ if (isset($_POST['reset'])) {
 
 
 
-        <section class="section education" id="education">
-            <h2 class="section-title title-center underline" data-title="Manage">Education</h2>
-            <div class="education-container container grid">
-                <div class="education-content">
-                    <h3 class="education-title">Education Title</h3>
-                    <p class="education-description">Education Description</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section activities" id="activities">
-            <h2 class="section-title title-center underline" data-title="Manage">Activities</h2>
-            <div class="activities-container container grid">
-                <div class="activities-content">
-                    <h3 class="activities-title">Activities Title</h3>
-                    <p class="activities-description">Activities Description</p>
-                </div>
-            </div>
-
-        </section>
+        
         <div class="container grid"><input type="submit" id="reset" name="reset" value="Reset cookies" class="btn"></div>
         </div>
     </form>
