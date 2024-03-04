@@ -98,11 +98,17 @@ if (isset($_POST['reset'])) {
         }
 
         .projects,
-        .skills {
+        .skills,
+        .education,
+        .activities {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        .messages,.activities {
+            background-color: var(--container-color);
         }
 
         .project-container {
@@ -123,23 +129,27 @@ if (isset($_POST['reset'])) {
             margin: 0;
         }
 
+        table,tr,th,td {
+            border: 2px solid;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            border: 2px solid var(--border-color);
-
+            
+            /* color: var(--background-color); */
         }
 
         th {
             font-size: 1.5rem;
             font-weight: 600;
             padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            background-color: var(--primary-color);
+            /* border-bottom: 1px solid var(--background-color); */
         }
 
         td {
             padding: 1rem;
-            border: 2px solid var(--primary-color);
             margin: 2px;
             text-align: center;
         }
@@ -150,7 +160,7 @@ if (isset($_POST['reset'])) {
 
         tr:nth-child(odd) {
             background: var(--background-color);
-
+            border-color: var(--border-color);
         }
 
         tr:nth-child(even) {
@@ -174,16 +184,16 @@ if (isset($_POST['reset'])) {
                 <label for="nav-toggler" class="nav-toggle"><i class="fa-solid fa-bars"></i></label>
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#Messages" class="nav-link">Messages</a>
+                        <a href="#messages" class="nav-link">Messages</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#Projects" class="nav-link">Projects</a>
+                        <a href="#projects" class="nav-link">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#Skills" class="nav-link">Skills</a>
+                        <a href="#skills" class="nav-link">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#Education" class="nav-link">Education</a>
+                        <a href="#education" class="nav-link">Education</a>
                     </li>
                     <li class="nav-item">
                         <a href="#activities" class="nav-link">Activities</a>
@@ -291,12 +301,12 @@ if (isset($_POST['reset'])) {
                             <td>" . $row['name'] . "</td>
                             <td>" . $row['description'] . "</td>
                             <td>" . $row['percentage'] . "</td>
-                            <td colspan=2><span><a href='deleteSkill.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-trash-can'></i></a>
-                            <a href='editSkill.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-pencil'></i></a></span>
+                            <td><a href='deleteSkill.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-trash-can'></i></a></td>
+                            <td><a href='editSkill.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-pencil'></i></a></td>
                             </tr>";
                         }
                     }
-                    mysqli_close($connection);
+                    
                     ?>
                     </table>
 
@@ -304,13 +314,86 @@ if (isset($_POST['reset'])) {
                 <a href="addSkill.php" class="btn btn-contact">Add a Skill </a>
             </section>
 
+            <section class="section education" id="education">
+                <h2 class="section-title title-center underline" data-title="Manage">Education</h2>
+                <div class="education-container container grid">
+                    
+                        <?php
+                        $select = "SELECT * FROM education";
+                        $result = mysqli_query($connection, $select);
+                        if (mysqli_num_rows($result) == 0) {
+                            echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
+                        } else {
+                            echo '<table>
+                        <tr>
+                            <th>Institution</th>
+                            <th>Degree</th>
+                            <th>Timeline</th>
+                            <th>Description</th>
+                            <th colspan=2>Action</th>
+                        </tr>';
+                        }
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>
+                            <td>" . $row['institution'] . "</td>
+                            <td>" . $row['degree'] . "</td>
+                            <td>" . $row['timeline'] . "</td>
+                            <td>" . $row['description'] . "</td>
+                            <td><a href='deleteEducation.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-trash-can'></i></a></td>
+                            <td><a href='editEducation.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-pencil'></i></a></td>
+                            </tr>";
+                            }
+                        }                   
+                        ?>
+                    </table>
+                </div>
+                <a href="addEducation.php" class="btn btn-contact">Add Education </a>
+            </section>
 
-
+            <section class="section activities" id="activities">
+                <h2 class="section-title title-center underline" data-title="Manage">Activities</h2>
+                <div class="activities-container container grid">
+                    
+                        <?php
+                        $select = "SELECT * FROM extracurricular";
+                        $result = mysqli_query($connection, $select);
+                        if (mysqli_num_rows($result) == 0) {
+                            echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
+                        } else {
+                            echo'<table>
+                            <tr>
+                                <th>Club</th>
+                                <th>Work</th>
+                                <th>Timeline</th>
+                                <th>Description</th>
+                                <th colspan=2>Action</th>
+                            </tr>';
+                        }
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>
+                            <td>" . $row['club'] . "</td>
+                            <td>" . $row['work'] . "</td>
+                            <td>" . $row['timeline'] . "</td>
+                            <td>" . $row['description'] . "</td>
+                            <td><a href='deleteActivity.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-trash-can'></i></a></td>
+                            <td><a href='editActivity.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-pencil'></i></a></td>
+                            </tr>";
+                            }
+                        }
+                        ?>
+                    </table>
+                </div>
+                <a href="addActivity.php" class="btn btn-contact">Add Activity </a>
+            </section>
 
             <div class="container grid"><input type="submit" id="reset" name="reset" value="Reset cookies" class="btn"></div>
         </div>
     </form>
-
+<?php
+mysqli_close($connection);
+?>
     <script src="script/index-script.js"></script>
 </body>
 

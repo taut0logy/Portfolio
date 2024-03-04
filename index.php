@@ -182,6 +182,29 @@
                     
                     <div class="resume-item-list">
                         <h3 class="resume-heading">Education</h3>
+                        <?php
+                            $select = "SELECT * FROM education";
+                            $result = mysqli_query($conn, $select);
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo '<div class="resume-item">
+                                    <div class="resume-header">
+                                        <h3 class="resume-subtitle">'.$row['institution'].'</h3>
+                                        <span class="resume-icon">+</span>
+                                    </div>
+                                    <div class="resume-content">
+                                        <div class="resume-date-title">
+                                            <h3 class="resume-title">'.$row['degree'].'</h3>
+                                            <span class="resume-date">'.$row['timeline'].'</span>
+                                        </div>
+                                        <p class="resume-desc">
+                                            '.$row['description'].'
+                                        </p>
+                                    </div>
+                                </div>';
+                                }
+                            }
+                        ?>
                         <div class="resume-item">
                             <div class="resume-header">
                                 <h3 class="resume-subtitle">
@@ -241,11 +264,36 @@
                     </div>
                 </div>
 
-                <!-- Expertise -->
+                <!-- Extra Curricular -->
 
                 <div class="resume-group">
-                    <h3 class="resume-heading">Extra Curricular Activities</h3>
+                    
                     <div class="resume-item-list">
+                    <h3 class="resume-heading">Extra Curricular Activities</h3>
+                    <?php
+                        $select = "SELECT * FROM extracurricular";
+                        $result = mysqli_query($conn, $select);
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<div class="resume-item">
+                                <div class="resume-header">
+                                    <h3 class="resume-subtitle">'.$row['club'].'</h3>
+                                    <span class="resume-icon">+</span>
+                                </div>
+                                <div class="resume-content">
+                                    <div class="resume-date-title">
+                                        <h3 class="resume-title">'.$row['work'].'</h3>
+                                        <span class="resume-date">'.$row['timeline'].'</span>
+                                    </div>
+                                    <p class="resume-desc">
+                                        '.$row['description'].'
+                                    </p>
+                                </div>
+                            </div>';
+                            }
+                        }
+                    ?>
+
                         <div class="resume-item">
                             <div class="resume-header">
                                 <h3 class="resume-subtitle">
