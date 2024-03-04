@@ -1,6 +1,9 @@
 <?php
 session_start();
-
+$connection=mysqli_connect('localhost:3307','root','','portfolio_db');
+if(!$connection){
+    die('Connection failed: '.mysqli_connect_error());
+}
 if (isset($_POST['logout'])) {
     session_destroy();
     header('Location: index.php');
@@ -91,7 +94,7 @@ if (isset($_POST['reset'])) {
             display: flex;
             align-items: space-between;
         }
-        .projects {
+        .projects, .skills {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -113,6 +116,41 @@ if (isset($_POST['reset'])) {
         .edit-delete .delete {
             font-size: 2rem;
             margin:0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid var(--border-color);
+
+        }
+
+        th {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            text-align: center;
+        }
+
+        td:nth-child(2) {
+            max-width: 50%;
+        }
+        tr:nth-child(odd) {
+            background: var(--background-color);
+        }
+        tr:nth-child(even) {
+            background: var(--border-color);
+            border-color: var(--background-color);
+        }
+
+        td .delete {
+            padding: .5rem;
         }
 
     </style>
@@ -156,10 +194,7 @@ if (isset($_POST['reset'])) {
             <h2 class="section-title title-center underline" data-title="Welcome Raufun!">Messages for you</h2>
             <div class="message-container container">
             <?php
-            $connection=mysqli_connect('localhost:3307','root','','portfolio_db');
-            if(!$connection){
-                die('Connection failed: '.mysqli_connect_error());
-            }
+            
             $select="SELECT * FROM messages";
             $result=mysqli_query($connection,$select);
             if(mysqli_num_rows($result)==0){
@@ -180,7 +215,7 @@ if (isset($_POST['reset'])) {
                 </div>";
                 }
             }
-            mysqli_close($connection);
+            //mysqli_close($connection);
             ?>     
             </div>
 
@@ -190,10 +225,10 @@ if (isset($_POST['reset'])) {
             <h2 class="section-title title-center underline" data-title="Manage">Projects</h2>
             <div class="project-container container grid">
                 <?php
-                $connection=mysqli_connect('localhost:3307','root','','portfolio_db');
-                if(!$connection){
-                    die('Connection failed: '.mysqli_connect_error());
-                }
+                // $connection=mysqli_connect('localhost:3307','root','','portfolio_db');
+                // if(!$connection){
+                //     die('Connection failed: '.mysqli_connect_error());
+                // }
                 $select="SELECT * FROM projects";
                 $result=mysqli_query($connection,$select);
                 if(mysqli_num_rows($result)==0){
@@ -218,7 +253,7 @@ if (isset($_POST['reset'])) {
                     </div>";
                     }
                 }
-                mysqli_close($connection);
+                // mysqli_close($connection);
                 ?>
                 
             </div>
@@ -228,12 +263,40 @@ if (isset($_POST['reset'])) {
         <section class="section skills" id="skills">
             <h2 class="section-title title-center underline" data-title="Manage">Skills</h2>
             <div class="skills-container container grid">
-                <div class="skills-content">
-                    <h3 class="skills-title">Skill Title</h3>
-                    <p class="skills-description">Skill Description</p>
-                </div>
+                
+                    <?php
+                    $select="SELECT * FROM skills";
+                    $result=mysqli_query($connection,$select);
+                    if(mysqli_num_rows($result)==0){
+                        echo "<h3 style='width: 100%; text-align:center;'>No skills yet!</h3>";
+                    } else {
+                        echo "<table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Percentage</th>
+                            <th colspan=2>Action</th>
+                        </tr>";
+                    }
+                    if(mysqli_num_rows($result)>0){
+                        while($row=mysqli_fetch_assoc($result)){
+                            echo "<tr>
+                            <td>".$row['name']."</td>
+                            <td>".$row['description']."</td>
+                            <td>".$row['percentage']."</td>
+                            <td colspan=2><span><a href='deleteSkill.php?id=".$row['id']."' class='delete'><i class='fa-solid fa-trash-can'></i></a>
+                            <a href='editSkill.php?id=".$row['id']."' class='delete'><i class='fa-solid fa-pencil'></i></a></span>
+                            </tr>";
+                        }
+                    }
+                    ?>
+                </table>
+                
             </div>
+            <a href="addSkill.php" class="btn btn-contact">Add a Skill </a>
         </section>
+
+
 
         <section class="section education" id="education">
             <h2 class="section-title title-center underline" data-title="Manage">Education</h2>

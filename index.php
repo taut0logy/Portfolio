@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-
+<?php
+    $conn = mysqli_connect('localhost', 'root', '', 'portfolio_db');
+    if (!$conn) {
+        die('Connection failed: ' . mysqli_connect_error());
+    }
+?>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -355,7 +360,26 @@
             <h2 class="section-title title-center underline" data-title="My talent">Professional Skills</h2>
             <div class="skills-container container grid">
 
-                <div class="skills-item">
+            <?php
+                $select = "SELECT * FROM skills";
+                $result = mysqli_query($conn, $select);
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="skills-item">
+                        <div class="skills-title">
+                            <h3 class="skills-name">'.$row['name'].'</h3>
+                            <span class="skills-no">'.$row['percentage'].'%</span>
+                        </div>
+                        <p class="skills-desc">'.$row['description'].'</p>
+                        <div class="skills-bar">
+                            <div class="skills-percentage" style="width: '.$row['percentage'].'%;"><span></span></div>
+                        </div>
+                    </div>';
+                    }
+                }
+            ?>
+
+                <!-- <div class="skills-item">
                     <div class="skills-title">
                         <h3 class="skills-name">C</h3>
                         <span class="skills-no">85%</span>
@@ -375,9 +399,9 @@
                     <div class="skills-bar">
                         <div class="skills-percentage" style="width: 80%;"><span></span></div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="skills-item">
+                <!-- <div class="skills-item">
                     <div class="skills-title">
                         <h3 class="skills-name">Java</h3>
                         <span class="skills-no">80%</span>
@@ -386,9 +410,9 @@
                     <div class="skills-bar">
                         <div class="skills-percentage" style="width: 80%;"><span></span></div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="skills-item">
+                <!-- <div class="skills-item">
                     <div class="skills-title">
                         <h3 class="skills-name">Kotlin</h3>
                         <span class="skills-no">75%</span>
@@ -397,40 +421,40 @@
                     <div class="skills-bar">
                         <div class="skills-percentage" style="width: 75%;"><span></span></div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="skills-item">
+                <!-- <div class="skills-item">
                     <div class="skills-title">
                         <h3 class="skills-name">PHP</h3>
                         <span class="skills-no">60%</span>
                     </div>
-                    <p class="skills-desc">I am learning PHP and building web applications using PHP and MySQL. I have developed a simple blog using PHP.</p>
+                    <p class="skills-desc">6</p>
                     <div class="skills-bar">
                         <div class="skills-percentage" style="width: 60%;"><span></span></div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="skills-item">
+                <!-- <div class="skills-item">
                     <div class="skills-title">
                         <h3 class="skills-name">JavaScript</h3>
                         <span class="skills-no">80%</span>
                     </div>
-                    <p class="skills-desc">I have written a few scripts and built a few web applications using JavaScript. I have learned React and Node.js and built a few web applications using them.</p>
+                    <p class="skills-desc">J</p>
                     <div class="skills-bar">
                         <div class="skills-percentage" style="width: 80%;"><span></span></div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="skills-item">
+                <!-- <div class="skills-item">
                     <div class="skills-title">
                         <h3 class="skills-name">HTML/CSS</h3>
                         <span class="skills-no">80%</span>
                     </div>
-                    <p class="skills-desc">I have been learnig front end web development sor 3 months. I have gained profociency in building responsive webpages.</p>
+                    <p class="skills-desc">8.</p>
                     <div class="skills-bar">
                         <div class="skills-percentage" style="width: 80%;"><span></span></div>
                     </div>
-                </div>
+                </div> -->
                 
 
             </div>
@@ -439,41 +463,23 @@
             <h2 class="section-title title-center underline" data-title="My Portfolio">Recent Projects</h2>
             <div class="project-container container grid">
 
-                <div class="project-card">
-                    <img src="img/console.jpeg" alt="" class="project-img">
-                    <div class="project-details">
-                        <h3 class="project-title">Financial Advisor</h3>
-                        <p class="prject-desc">A console application built with C++ that can manage daily transactions and write reports.</p>
-                        <a href="https://github.com/taut0logy/Personal-Finance-Manager-App" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <img src="img/desktop.jpeg" alt="" class="project-img">
-                    <div class="project-details">
-                        <h3 class="project-title">Finance Manager</h3>
-                        <p class="prject-desc">A desktop aplication built for financial analysis, reports and plans.</p>
-                        <a href="https://github.com/taut0logy/Financial-Advisor" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <img src="img/wordle.jpeg" alt="" class="project-img">
-                    <div class="project-details">
-                        <h3 class="project-title">Goriber Wordle</h3>
-                        <p class="prject-desc">A wordle game built as a web application, with its own database of words.</p>
-                        <a href="https://github.com/taut0logy/Goriber-Wordle" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <img src="img/android.jpeg" alt="" class="project-img">
-                    <div class="project-details">
-                        <h3 class="project-title">My Application</h3>
-                        <p class="prject-desc">A basic android application with a log in system, a menu and a profile panel.</p>
-                        <a href="https://github.com/taut0logy/MyApplication" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
-                    </div>
-                </div>
+            <?php
+                
+                $select = "SELECT * FROM projects";
+                $result = mysqli_query($conn, $select);
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="project-card">
+                        <img src="img/'.$row['photo'].'" alt="" class="project-img">
+                        <div class="project-details">
+                            <h3 class="project-title">'.$row['title'].'</h3>
+                            <p class="prject-desc">'.$row['description'].'</p>
+                            <a href="'.$row['link'].'" class="project-link">GitHub <i class="fa-solid fa-square-arrow-up-right"></i></a>
+                        </div>
+                    </div>';
+                    }
+                }
+            ?>
             </div>
         </section>
         <section class="contact section" id="contact">
@@ -578,3 +584,6 @@
         <script src="script/index-script.js" async defer></script>
     </body>
 </html>
+<?php
+    mysqli_close($conn);
+?>
