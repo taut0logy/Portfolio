@@ -58,9 +58,10 @@ if (isset($_POST['submit'])) {
 
         $insert = "INSERT INTO projects (title, description, link, photo) VALUES ('$name', '$desc', '$link', '$photo')";
         $result = mysqli_query($conn, $insert);
+        mysqli_close($conn);
         if ($result) {
             echo "<script>alert('Project added successfully!')</script>";
-            header('Location: dashboard.php');
+            echo "<script>window.open('dashboard.php','_self')</script>";
             exit();
         } else {
             echo "<script>alert('Failed to add project!')</script>";

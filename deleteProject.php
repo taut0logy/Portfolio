@@ -10,4 +10,5 @@
     }else{
         echo "<script>alert('Failed to delete project!')</script>";
         echo "<script>window.open('dashboard.php', '_self')</script>";
+        exit();
 }

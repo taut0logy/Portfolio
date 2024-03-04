@@ -60,7 +60,7 @@ if(isset($_SESSION['username'])){
                 setcookie('username', $username, time() + 60*60*24*7);
                 setcookie('password', $password, time() + 60*60*24*7);
             }
-            header('Location: dashboard.php');
+            echo "<script>window.open('dashboard.php', '_self')</script>";
         }else{
             echo "<script>alert('Invalid username or password!')</script>";
             echo "<script>window.open('signin.php', '_self')</script>";

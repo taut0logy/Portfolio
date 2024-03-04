@@ -1,43 +1,49 @@
+<!DOCTYPE html>
+<html>
 <?php
 $conn = mysqli_connect('localhost', 'root', '', 'portfolio_db');
 if (!$conn) {
     die('Connection failed: ' . mysqli_connect_error());
 }
-$id = $_GET['id'];
-$select = "SELECT * FROM skills WHERE id='$id'";
-$result = mysqli_query($conn, $select);
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $name = $row['title'];
-        $desc = $row['description'];
-        $percentage = $row['percentage'];
-    }
-}
 
 if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
+    // echo "<script>console.log('2id: " . $id . "')</script>";
     $name = $_POST['name'];
     $desc = $_POST['desc'];
-    $percentage = $_POST['percentage'];
-
-    $update = "UPDATE projects SET title='$name', description='$desc', percentage='$percentage' WHERE id='$id'";
-    $result = mysqli_query($conn, $update);
-
+    $link = $_POST['percentage'];
+    $update = "UPDATE skills SET name='$name', description='$desc', percentage='$percentage' WHERE sid='$id'";
+    $result2 = mysqli_query($conn, $update);
+    mysqli_close($conn);
     
-        if ($result) {
-
-            header('Location: dashboard.php');
+    
+        if ($result2) {
+            echo "<script>alert('Skill updated successfully!')</script>";
+            echo "<script>window.open('dashboard.php','_self')</script>";
             exit();
         } else {
             echo "<script>alert('Failed to update project!')</script>";
+            echo "<script>window.open('editSkill.php','_self')</script>";
+            exit();
         }
 }
+$id = $_GET['id'];
+echo "<script>console.log('1id: " . $id . "')</script>";
+$select = "SELECT * FROM skills WHERE id='$id'";
+$result = mysqli_query($conn, $select);
 
-
+//echo "script>Console.log('result:". $result."')</script>";
+// if (mysqli_num_rows($result) == 0) {
+//     echo "<script>alert('No skill found!')</script>";
+//     echo "<script>window.open('dashboard.php','_self')</script>";
+//     exit();
+// }
+$row = mysqli_fetch_assoc($result);
+$id = $row['id'];
+$name = $row['name'];
+$desc = $row['description'];
+$percentage = $row['percentage'];
 ?>
-
-<!DOCTYPE html>
-<html>
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -73,17 +79,25 @@ if (isset($_POST['submit'])) {
 </head>
 
 
+<?php
+
+
+
+
+?>
 
 <body>
     <section class="addproject section">
         <h2 class="section-title title-center underline" data-title="Edit">Skill</h2>
-        <form action="addProject.php" method="post" class="contact-form" enctype="multipart/form-data">
-        <div class="form-input"><input class="input-control" name="name" type="text" placeholder="Title" required></div>
-            <div class="form-input"><textarea class="input-control textarea" id="desc" name="desc" placeholder="Description (must be within 500 characters)" rows="30" cols="30" required></textarea></div>
-            <div class="form-input"><input class="input-control" name="percentage" type="text" placeholder="Percentage" required></div>
-            <input type="submit" name="submit" value="Add Project" class="btn btn-contact">
+        <form action="editSkill.php" method="post" class="contact-form" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <div class="form-input"><input class="input-control" name="name" type="text" placeholder="Title" value="<?php echo $name; ?>" required></div>
+            <div class="form-input"><textarea class="input-control textarea" id="desc" name="desc" placeholder="Description (must be within 500 characters)" rows="30" cols="30" required><?php echo $desc; ?></textarea></div>
+            <div class="form-input"><input class="input-control" name="percentage" type="number" placeholder="Percentage" value="<?php echo $percentage; ?>" required></div>
+            <input type="submit" name="submit" value="Confirm Edit" class="btn btn-contact">
         </form>
     </section>
+
     <script src="" async defer></script>
 </body>
 
