@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect('localhost', 'root', '', 'portfolio_db');
+$conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
 if (!$conn) {
     die('Connection failed: ' . mysqli_connect_error());
 }
@@ -7,7 +7,7 @@ if (!$conn) {
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];
-    echo "<script>console.log('id: ".$id."')</script>";
+    echo "<script>console.log('id: " . $id . "')</script>";
     $name = $_POST['name'];
     $desc = $_POST['desc'];
     $link = $_POST['link'];
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
         $select = "SELECT photo FROM projects WHERE id='$id'";
         $result = mysqli_query($conn, $select);
         $row = mysqli_fetch_assoc($result);
-        $deleteFilePath="img/".$row['photo'];
+        $deleteFilePath = "img/" . $row['photo'];
         unlink($deleteFilePath);
         $target = "img/" . basename($photo);
         if (move_uploaded_file($photo_tmp, $target)) {
@@ -36,16 +36,14 @@ if (isset($_POST['submit'])) {
 
             echo "<script>alert('Project updated successfully!')</script>";
             echo "<script>window.open('dashboard.php','_self')</script>";
-            
         } else {
             echo "<script>alert('Failed to update project!')</script>";
             echo "<script>window.open('dashboard.php','_self')</script>";
-            
         }
     }
 }
 $id = $_GET['id'];
-echo "<script>console.log('1id: ".$id."')</script>";
+echo "<script>console.log('1id: " . $id . "')</script>";
 $select = "SELECT * FROM projects WHERE id='$id'";
 $result = mysqli_query($conn, $select);
 // if (mysqli_num_rows($result) == 0) {
@@ -53,11 +51,11 @@ $result = mysqli_query($conn, $select);
 // echo "<script>window.open('dashboard.php','_self')</script>";
 // }
 $row = mysqli_fetch_assoc($result);
-$id=$row['id'];
-$name=$row['title'];
-$desc=$row['description'];
-$link=$row['link'];
-$photo=$row['photo'];
+$id = $row['id'];
+$name = $row['title'];
+$desc = $row['description'];
+$link = $row['link'];
+$photo = $row['photo'];
 mysqli_close($conn);
 
 

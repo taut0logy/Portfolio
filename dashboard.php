@@ -59,10 +59,9 @@ if (isset($_POST['reset'])) {
             position: relative;
             width: 80%;
             background: var(--border-color);
-            border-radius: 40px;
+            border-radius: 20px;
             padding: 24px;
             margin-bottom: 30px;
-            /* color: var(--font); */
         }
 
         .left:before {
@@ -115,14 +114,15 @@ if (isset($_POST['reset'])) {
             align-items: center;
         }
 
-        .messages,.activities {
+        .messages,
+        .activities {
             background-color: var(--container-color);
         }
 
-        /* .project-container {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        } */
+        .project-container {
+            grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 1fr;
+        }
 
         .edit-delete {
             display: flex;
@@ -137,14 +137,17 @@ if (isset($_POST['reset'])) {
             margin: 0;
         }
 
-        table,tr,th,td {
+        table,
+        tr,
+        th,
+        td {
             border: 2px solid;
         }
 
         table {
             max-width: 100%;
             border-collapse: collapse;
-            
+
             /* color: var(--background-color); */
         }
 
@@ -262,7 +265,7 @@ if (isset($_POST['reset'])) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             $image = $row['photo'];
-                            header('Content-type: image/jpeg');
+                            //header('Content-type: image/jpeg');
                             echo "<div class='project-card'>
                         <img src='img/" . $image . "' alt='project image' class='project-img'>
                         <div class='project-details'>
@@ -314,7 +317,7 @@ if (isset($_POST['reset'])) {
                             </tr>";
                         }
                     }
-                    
+
                     ?>
                     </table>
 
@@ -325,14 +328,14 @@ if (isset($_POST['reset'])) {
             <section class="section education" id="education">
                 <h2 class="section-title title-center underline" data-title="Manage">Education</h2>
                 <div class="education-container container table-container">
-                    
-                        <?php
-                        $select = "SELECT * FROM education";
-                        $result = mysqli_query($connection, $select);
-                        if (mysqli_num_rows($result) == 0) {
-                            echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
-                        } else {
-                            echo '<table>
+
+                    <?php
+                    $select = "SELECT * FROM education";
+                    $result = mysqli_query($connection, $select);
+                    if (mysqli_num_rows($result) == 0) {
+                        echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
+                    } else {
+                        echo '<table>
                         <tr>
                             <th>Institution</th>
                             <th>Degree</th>
@@ -340,10 +343,10 @@ if (isset($_POST['reset'])) {
                             <th>Description</th>
                             <th colspan=2>Action</th>
                         </tr>';
-                        }
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>
+                    }
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>
                             <td>" . $row['institution'] . "</td>
                             <td>" . $row['degree'] . "</td>
                             <td>" . $row['timeline'] . "</td>
@@ -351,9 +354,9 @@ if (isset($_POST['reset'])) {
                             <td><a href='deleteEducation.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-trash-can'></i></a></td>
                             <td><a href='editEducation.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-pencil'></i></a></td>
                             </tr>";
-                            }
-                        }                   
-                        ?>
+                        }
+                    }
+                    ?>
                     </table>
                 </div>
                 <a href="addEducation.php" class="btn btn-contact">Add Education </a>
@@ -362,14 +365,14 @@ if (isset($_POST['reset'])) {
             <section class="section activities" id="activities">
                 <h2 class="section-title title-center underline" data-title="Manage">Activities</h2>
                 <div class="activities-container container table-container">
-                    
-                        <?php
-                        $select = "SELECT * FROM extracurricular";
-                        $result = mysqli_query($connection, $select);
-                        if (mysqli_num_rows($result) == 0) {
-                            echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
-                        } else {
-                            echo'<table>
+
+                    <?php
+                    $select = "SELECT * FROM extracurricular";
+                    $result = mysqli_query($connection, $select);
+                    if (mysqli_num_rows($result) == 0) {
+                        echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
+                    } else {
+                        echo '<table>
                             <tr>
                                 <th>Club</th>
                                 <th>Work</th>
@@ -377,10 +380,10 @@ if (isset($_POST['reset'])) {
                                 <th>Description</th>
                                 <th colspan=2>Action</th>
                             </tr>';
-                        }
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo "<tr>
+                    }
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<tr>
                             <td>" . $row['club'] . "</td>
                             <td>" . $row['work'] . "</td>
                             <td>" . $row['timeline'] . "</td>
@@ -388,9 +391,9 @@ if (isset($_POST['reset'])) {
                             <td><a href='deleteActivity.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-trash-can'></i></a></td>
                             <td><a href='editActivity.php?id=" . $row['id'] . "' class='delete'><i class='fa-solid fa-pencil'></i></a></td>
                             </tr>";
-                            }
                         }
-                        ?>
+                    }
+                    ?>
                     </table>
                 </div>
                 <a href="addActivity.php" class="btn btn-contact">Add Activity </a>
@@ -399,9 +402,9 @@ if (isset($_POST['reset'])) {
             <div class="container grid"><input type="submit" id="reset" name="reset" value="Reset cookies" class="btn"></div>
         </div>
     </form>
-<?php
-mysqli_close($connection);
-?>
+    <?php
+    mysqli_close($connection);
+    ?>
     <script src="script/index-script.js"></script>
 </body>
 

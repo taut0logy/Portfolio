@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,31 +32,32 @@
         }
     </style>
 </head>
-<body>
-<?php
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    $percentage = $_POST['percentage'];
-    $desc = $_POST['desc'];
-    
-    $conn = mysqli_connect('localhost', 'root', '', 'portfolio_db');
-    if (!$conn) {
-        die('Connection failed: ' . mysqli_connect_error());
-    }
 
-    $insert = "INSERT INTO skills (name, percentage, description) VALUES ('$name', '$percentage', '$desc')";
-    $result = mysqli_query($conn, $insert);
-    if ($result) {
-        echo "<script>alert('Skill added successfully!')</script>";
-        echo "<script>window.open('dashboard.php','_self')</script>";
-        exit();
-    } else {
-        echo "<script>alert('Failed to add skill!')</script>";
-        echo "<script>window.open('addSkill.php','_self')</script>";
+<body>
+    <?php
+    if (isset($_POST['submit'])) {
+        $name = $_POST['name'];
+        $percentage = $_POST['percentage'];
+        $desc = $_POST['desc'];
+
+        $conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
+        if (!$conn) {
+            die('Connection failed: ' . mysqli_connect_error());
+        }
+
+        $insert = "INSERT INTO skills (name, percentage, description) VALUES ('$name', '$percentage', '$desc')";
+        $result = mysqli_query($conn, $insert);
+        if ($result) {
+            echo "<script>alert('Skill added successfully!')</script>";
+            echo "<script>window.open('dashboard.php','_self')</script>";
+            exit();
+        } else {
+            echo "<script>alert('Failed to add skill!')</script>";
+            echo "<script>window.open('addSkill.php','_self')</script>";
+        }
+        mysqli_close($conn);
     }
-    mysqli_close($conn);
-}
-?>
+    ?>
     <section class="addproject section">
         <h2 class="section-title title-center underline" data-title="Add a">New Skill</h2>
         <form action="addSkill.php" method="post" class="contact-form">
@@ -68,4 +69,5 @@ if (isset($_POST['submit'])) {
     </section>
     <script src="" async defer></script>
 </body>
+
 </html>

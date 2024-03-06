@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     $timeline = $_POST['timeline'];
     $desc = $_POST['description'];
 
-    $conn = mysqli_connect('localhost', 'root', '', 'portfolio_db');
+    $conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
     if (!$conn) {
         die('Connection failed: ' . mysqli_connect_error());
     }
@@ -59,14 +59,14 @@ if (isset($_POST['submit'])) {
 ?>
 
 <body>
-<section class="addproject section">
+    <section class="addproject section">
         <h2 class="section-title title-center underline" data-title="Add a">New Degree</h2>
         <form action="addEducation.php" method="post" class="contact-form">
             <div class="form-input"><input class="input-control" name="institution" type="text" placeholder="Institution" required></div>
             <div class="form-input"><input class="input-control" name="degree" type="text" placeholder="Degree" required></div>
             <div class="form-input"><input class="input-control" name="timeline" type="text" placeholder="Timeline" required></div>
             <div class="form-input"><textarea class="input-control textarea" id="desc" name="description" placeholder="Description (must be within 500 characters)" rows="30" cols="30" required></textarea></div>
-            
+
             <input type="submit" name="submit" value="Add Degree" class="btn btn-contact">
         </form>
     </section>

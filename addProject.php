@@ -44,14 +44,13 @@ if (isset($_POST['submit'])) {
 
     if (!empty($photo)) {
         $target = "img/" . basename($photo);
-        if(move_uploaded_file($photo_tmp, $target)){
-            
+        if (move_uploaded_file($photo_tmp, $target)) {
         } else {
             echo "<script>alert('Failed to upload image!')</script>";
         }
 
 
-        $conn = mysqli_connect('localhost', 'root', '', 'portfolio_db');
+        $conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
         if (!$conn) {
             die('Connection failed: ' . mysqli_connect_error());
         }
