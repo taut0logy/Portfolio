@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <?php
-$conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
-if (!$conn) {
-    die('Connection failed: ' . mysqli_connect_error());
-}
+
+include_once('db.php');
 
 if (isset($_POST['submit'])) {
     $id = $_POST['id'];

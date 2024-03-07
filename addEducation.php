@@ -35,16 +35,12 @@
     </style>
 </head>
 <?php
+include_once('db.php');
 if (isset($_POST['submit'])) {
     $institution = $_POST['institution'];
     $degree = $_POST['degree'];
     $timeline = $_POST['timeline'];
     $desc = $_POST['description'];
-
-    $conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
-    if (!$conn) {
-        die('Connection failed: ' . mysqli_connect_error());
-    }
 
     $insert = "INSERT INTO education (institution, degree, timeline, description) VALUES ('$institution', '$degree', '$timeline', '$desc')";
     $result = mysqli_query($conn, $insert);

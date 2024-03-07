@@ -35,6 +35,8 @@
     </style>
 </head>
 <?php
+include_once('db.php');
+
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $desc = $_POST['desc'];
@@ -47,12 +49,6 @@ if (isset($_POST['submit'])) {
         if (move_uploaded_file($photo_tmp, $target)) {
         } else {
             echo "<script>alert('Failed to upload image!')</script>";
-        }
-
-
-        $conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
-        if (!$conn) {
-            die('Connection failed: ' . mysqli_connect_error());
         }
 
         $insert = "INSERT INTO projects (title, description, link, photo) VALUES ('$name', '$desc', '$link', '$photo')";

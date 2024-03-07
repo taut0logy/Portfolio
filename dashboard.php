@@ -3,10 +3,8 @@ session_start();
 if (!isset($_SESSION['username'])) {
     header('Location: index.php');
 }
-$connection = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
-if (!$connection) {
-    die('Connection failed: ' . mysqli_connect_error());
-}
+include_once('db.php');
+
 if (isset($_POST['logout'])) {
     session_destroy();
     header('Location: index.php');
@@ -224,7 +222,7 @@ if (isset($_POST['reset'])) {
                 <div class="message-container container">
                     <?php
                     $select = "SELECT * FROM messages";
-                    $result = mysqli_query($connection, $select);
+                    $result = mysqli_query($conn, $select);
                     if (mysqli_num_rows($result) == 0) {
                         echo "<h3>No messages yet!</h3>";
                     }
@@ -243,7 +241,7 @@ if (isset($_POST['reset'])) {
                     </div>";
                         }
                     }
-                    //mysqli_close($connection);
+                    //mysqli_close($conn);
                     ?>
                 </div>
 
@@ -253,12 +251,12 @@ if (isset($_POST['reset'])) {
                 <h2 class="section-title title-center underline" data-title="Manage">Projects</h2>
                 <div class="project-container container grid">
                     <?php
-                    // $connection=mysqli_connect('localhost:3307','root','','portfolio_db');
-                    // if(!$connection){
-                    //     die('Connection failed: '.mysqli_connect_error());
+                    // $conn=mysqli_connect('localhost:3307','root','','portfolio_db');
+                    // if(!$conn){
+                    //     die('conn failed: '.mysqli_connect_error());
                     // }
                     $select = "SELECT * FROM projects";
-                    $result = mysqli_query($connection, $select);
+                    $result = mysqli_query($conn, $select);
                     if (mysqli_num_rows($result) == 0) {
                         echo "<h3 style='width: 100%; text-align:center;'>No projects yet!</h3>";
                     }
@@ -281,7 +279,7 @@ if (isset($_POST['reset'])) {
                     </div>";
                         }
                     }
-                    // mysqli_close($connection);
+                    // mysqli_close($conn);
                     ?>
 
                 </div>
@@ -294,7 +292,7 @@ if (isset($_POST['reset'])) {
 
                     <?php
                     $select = "SELECT * FROM skills";
-                    $result = mysqli_query($connection, $select);
+                    $result = mysqli_query($conn, $select);
                     if (mysqli_num_rows($result) == 0) {
                         echo "<h3 style='width: 100%; text-align:center;'>No skills yet!</h3>";
                     } else {
@@ -331,7 +329,7 @@ if (isset($_POST['reset'])) {
 
                     <?php
                     $select = "SELECT * FROM education";
-                    $result = mysqli_query($connection, $select);
+                    $result = mysqli_query($conn, $select);
                     if (mysqli_num_rows($result) == 0) {
                         echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
                     } else {
@@ -368,7 +366,7 @@ if (isset($_POST['reset'])) {
 
                     <?php
                     $select = "SELECT * FROM extracurricular";
-                    $result = mysqli_query($connection, $select);
+                    $result = mysqli_query($conn, $select);
                     if (mysqli_num_rows($result) == 0) {
                         echo "<h3 style='width: 100%; text-align:center;'>No data yet!</h3>";
                     } else {
@@ -403,7 +401,7 @@ if (isset($_POST['reset'])) {
         </div>
     </form>
     <?php
-    mysqli_close($connection);
+    mysqli_close($conn);
     ?>
     <script src="script/index-script.js"></script>
 </body>

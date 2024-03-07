@@ -44,16 +44,14 @@ if (isset($_SESSION['username'])) {
 
 <body>
     <?php
+    include_once('db.php');
+
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
         if (empty($username) || empty($password)) {
             echo "<script>alert('Please enter your username and password!')</script>";
             exit();
-        }
-        $conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
-        if (!$conn) {
-            die('Connection failed: ' . mysqli_connect_error());
         }
         $select = "SELECT * FROM auth WHERE username='$username' AND password='$password'";
         $result = mysqli_query($conn, $select);

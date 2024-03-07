@@ -1,4 +1,5 @@
 <?php
+include_once('db.php');
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -8,10 +9,7 @@ if (isset($_POST['submit'])) {
         echo "<script>alert('Please fill in all fields!')</script>";
         header('Location: index.php');
     }
-    $conn = mysqli_connect('localhost:3307', 'root', '', 'portfolio_db');
-    if (!$conn) {
-        die('Connection failed: ' . mysqli_connect_error());
-    }
+
     $insert = "INSERT INTO messages (name, email, subject, message) VALUES ('$name', '$email', '$subject', '$message')";
 
     if (mysqli_query($conn, $insert)) {
