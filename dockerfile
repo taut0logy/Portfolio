@@ -9,16 +9,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
     && apt-get update && apt-get install -y \
     php7.4-fpm \
     php7.4-pdo \
-    php7.4-mysql \
-    php7.4-curl \
-    php7.4-gd \
-    php7.4-fileinfo \
-    php7.4-mbstring \
-    php7.4-soap \
-    php7.4-xml \
-    php7.4-xmlrpc \
-    php7.4-zip \
-    php7.4-cli
+    php7.4-mysql 
 
 # Copy Nginx configuration
 COPY ./server/nginx.conf /etc/nginx/sites-available/default
