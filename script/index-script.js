@@ -45,12 +45,12 @@ if (screen.width > 768) {
 let typed = document.querySelector(".typed");
 let cursor = document.querySelector(".cursor");
 let strings = [
-  "Web Developer",
+  "Laravel Developer",
+  "React Developer",
+  "Android Developer",
   "Competitive Programmer",
-  "Mobile Developer",
-  "Machine Learning Enthusiast",
-  "Open Source Contributor",
-];
+  "Linux Enthusiast",
+]
 
 function commonPrefix(str1) {
   let prefix = "";
